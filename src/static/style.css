@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+ } 
+ h2 {
+    color: black;
+ }
+ table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-left: 10px;
+ }
+ th, td {
+    text-align: left;
+    padding: 15px;
+}
+tr:nth-child(odd) {
+    background-color: #82CAFF;
+}
+.logout {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.17;
+    letter-spacing: normal;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 40px;
+    background-color: black;
+    color: white;
+    float: right;
+}
+.mydiv {
+    background-color: #82CAFF;
+    width: 100%;
+    position: relative;
+}
+.backarrow {
+    width: 42px; 
+    height: 42px; 
+    padding-top: 30px; 
+    padding-left: 30px;  
+}

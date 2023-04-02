@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>welcome page</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logo-epita-en.png') }}">
+        <meta charset="charset">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script> 
+        <script>
+            window.onload = function () {
+                
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                
+                title:{
+                    text:""
+                },
+                axisX:{
+                    interval: 1
+                },
+                axisY2:{
+                    interlacedColor: "rgba(1,77,101,.2)",
+                    gridColor: "rgba(1,77,101,.1)",
+                    title: "Attendance Rate(%)"
+                },
+                data: [{
+                    type: "bar",
+                    name: "companies",
+                    axisYType: "secondary",
+                    color: "#014D65",
+                    dataPoints: [
+                        { y: 68, label: "SE" },
+                        { y: 69, label: "ISM" },
+                        { y: 73, label: "DSA" },
+                        { y: 63, label: "CS" },
+                        { y: 75, label: "Als" },
+                    ]
+                }]
+            });
+            chart.render();
+            
+            }
+            </script>
+    </head>
+    <body>
+        <div class="mydiv">
+            <a href="https://epita.fr/"><button type="button" class="logout" style="margin-top: 60px; margin-right: 20px;"> Log out </button></a>
+            <a href="https://epita.fr/"  style="text-decoration: none;color: black;">
+                <img src="{{ url_for('static', filename='back-arrow.png') }}" alt="Click to go back" class="backarrow">
+                <b> Back</b>
+            </a>
+            <center><div style="width:80px"><img src="{{ url_for('static', filename='logo-epita-en.png') }}" alt="Epita Logo" style="width:80px; height:70px;"></div></center>
+        </div>
+        <i><center>website last generated - <em id="demo"></em></center></i>
+        <br>
+        <h2><i> Welcome, Admin! </i></h2>
+        <br>
+        <h2> Active Populations </h2>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+        <div style="display: grid;grid-gap: 1px;width: 100%;grid-template-columns: 1fr 1fr">
+            <div>
+                <table>
+                    {% for x in active_populations %}
+                    <tr>
+                        <td> <a href="/populations/{{x[0]}}" style="text-decoration: none;color: black;">
+                            {{ x[0] }} - {{x[1]}} - {{x[2]}} ({{x[3]}}) 
+                        </a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div><canvas id="myChart" style="height: 180px; width:300px;max-width:600px;margin-right: 20px;"></canvas></div>
+        </div>
+        <br>
+        <br>
+        <h2> Overall Attendance </h2>
+        <div style="display: grid;grid-gap: 30px;width: 100%;grid-template-columns: 1fr 1fr;">
+            <div>
+                <table>
+                    {% for y in overall_attendance %}
+                    <tr>
+                            <td>
+                                {{ y[0] }} : {{ y[1] }}  - {{ y[2]}} - ({{ y[3]}})%
+                            </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+        </div>
+        <br>
+        <br>
+        <script>
+            var xValues = ["Als", "CS", "DSA", "ISM", "SE"];
+            var yValues = [4, 5, 7, 5, 4];
+            var barColors = [
+              "#b91d47",
+              "#00aba9",
+              "#2b5797",
+              "#014D65",
+              "#1e7145"
+            ];
+            
+            new Chart("myChart", {
+              type: "doughnut",
+              data: {
+                labels: xValues,
+                datasets: [{
+                  backgroundColor: barColors,
+                  data: yValues
+                }]
+              },
+              options: {
+                title: {
+                  display: true,
+                  text: "Students Per Program"
+                }
+              }
+            });
+        </script>
+
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    
+      <center><em>© 2023, Alago Victor G.I.H.F</em></center>
+      <script>
+        let text = document.lastModified;
+        document.getElementById("demo").innerHTML = text;
+    </script>
+    </body>
+</html>

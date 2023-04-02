@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>populations page</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style2.css') }}">
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logo-epita-en.png') }}">
+        <meta charset="charset">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <a href="https://epita.fr/"><button type="button" class="logout" style="margin-top: 60px; margin-right: 20px;"> Log out </button></a>
+            <a href="/"  style="text-decoration: none;color: black;">
+                <img src="{{ url_for('static', filename='back-arrow.png') }}" alt="Click to go back" class="backarrow">
+                <b> Back</b>
+            </a>
+            <center><div style="width:80px"><img src="{{ url_for('static', filename='logo-epita-en.png') }}" alt="Epita Logo" style="width:80px; height:70px;"></div></center>
+        </div>
+        <i><center>website last generated - <em id="demo"></em></center></i>
+        <br>
+        
+        <h2>POPULATION PAGE FOR - {{program[0][5]}} {{program[0][0]}}</h2>
+       
+        
+        <br>
+        <h3>STUDENTS</h3>
+        <table class="center">
+            <tr>
+                <th>YEAR</th>
+                <th>EMAIL</th>
+                <th>FIRST NAME</th>
+                <th>LAST NAME</th>
+                <th>PASSED</th>
+            </tr>
+            {% for ab in program %}
+            <tr>
+                    <td>{{ ab[0] }}</td>
+                    <td>{{ ab[1] }}</td>
+                    <td>{{ ab[2] }}</td>
+                    <td>{{ ab[3] }}</td>
+                    <td>{{ ab[4] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <br>
+        <h3>COURSES</h3>
+        <table class="center">
+            <tr>
+                <th>YEAR</th>
+                <th>COURSE CODE</th>
+                <th>COURSE NAME</th>
+                <th>SESSIONS</th>
+            </tr>
+            {% for ad in for_course %}
+            <tr>
+                    <td>{{ ad[0] }}</a></td>
+                    <td><a href="/grades/{{ad[4]}}" style="text-decoration: none;color: black;">{{ ad[1] }}</a></td>
+                    <td>{{ ad[2] }}</a></td>
+                    <td>{{ ad[3] }}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <br>
+        <center><em>© 2023, Alago Victor G.I.H.F</em></center>
+        <script>
+            let text = document.lastModified;
+            document.getElementById("demo").innerHTML = text;
+        </script>
+    </body>
+
+
+</html>
